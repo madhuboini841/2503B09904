@@ -53,22 +53,22 @@ const HomePage = () => {
   });
 
   return (
-    <Container maxWidth="lg" sx={{ py: 4, display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-      <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 2 }}>
-        <Box display="flex" alignItems="center" gap={2}>
-          <Box sx={{ backgroundColor: '#1976d215', p: 1.5, borderRadius: 2 }}>
-            <NotificationsIcon color="primary" sx={{ fontSize: 40 }} />
+    <Container maxWidth="lg" sx={{ py: 5, display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+      <Box sx={{ mb: 5, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 2 }}>
+        <Box display="flex" alignItems="center" gap={3}>
+          <Box sx={{ backgroundColor: '#1976d215', p: 1.5, borderRadius: 3, display: 'flex' }}>
+            <NotificationsIcon color="primary" sx={{ fontSize: 48 }} />
           </Box>
           <Box>
-            <Typography variant="h4" fontWeight={800} color="#2C3E50">
+            <Typography variant="h3" fontWeight={800} color="#2C3E50" sx={{ letterSpacing: '-0.5px' }}>
               Alert Dashboard
             </Typography>
-            <Typography variant="subtitle1" color="text.secondary">
+            <Typography variant="subtitle1" color="text.secondary" sx={{ mt: 0.5 }}>
               Monitor and track all organizational broadcasts in real-time.
             </Typography>
           </Box>
         </Box>
-        <Box sx={{ textAlign: 'right' }}>
+        <Box sx={{ textAlign: 'right', backgroundColor: '#f8f9fa', px: 3, py: 1.5, borderRadius: 2, border: '1px solid #e0e0e0' }}>
           <Typography variant="body2" color="text.secondary" fontWeight="bold">
             {currentDate}
           </Typography>
@@ -76,11 +76,11 @@ const HomePage = () => {
       </Box>
 
       {isLoading ? (
-        <Box sx={{ mb: 4 }}>
-          <Grid container spacing={3}>
+        <Box sx={{ mb: 5 }}>
+          <Grid container spacing={4}>
             {[1, 2, 3, 4].map(i => (
               <Grid item xs={12} sm={6} md={3} key={i}>
-                <Skeleton variant="rounded" height={160} />
+                <Skeleton variant="rounded" height={180} />
               </Grid>
             ))}
           </Grid>
@@ -97,20 +97,20 @@ const HomePage = () => {
       />
 
       {fetchError && (
-        <Alert severity="error" variant="filled" sx={{ mb: 3 }}>
+        <Alert severity="error" variant="filled" sx={{ mb: 4, borderRadius: 2 }}>
           {fetchError}
         </Alert>
       )}
 
-      <TableContainer component={Paper} elevation={2} sx={{ borderRadius: 2, overflow: 'hidden', flexGrow: 1, maxHeight: 600 }}>
-        <Table stickyHeader sx={{ minWidth: 650 }} aria-label="notifications table">
+      <TableContainer component={Paper} elevation={0} sx={{ borderRadius: 3, overflow: 'hidden', flexGrow: 1, maxHeight: 650, border: '1px solid #e0e0e0', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
+        <Table stickyHeader sx={{ minWidth: 650 }} aria-label="notifications table" size="medium">
           <TableHead>
             <TableRow>
-              <TableCell sx={{ fontWeight: 'bold', color: '#546e7a', backgroundColor: '#f4f6f8' }}>Status</TableCell>
-              <TableCell sx={{ fontWeight: 'bold', color: '#546e7a', backgroundColor: '#f4f6f8' }}>Category</TableCell>
-              <TableCell sx={{ fontWeight: 'bold', color: '#546e7a', backgroundColor: '#f4f6f8' }}>Title</TableCell>
-              <TableCell sx={{ fontWeight: 'bold', color: '#546e7a', backgroundColor: '#f4f6f8' }}>Details</TableCell>
-              <TableCell sx={{ fontWeight: 'bold', color: '#546e7a', backgroundColor: '#f4f6f8' }}>Date</TableCell>
+              <TableCell sx={{ fontWeight: 700, color: '#455a64', backgroundColor: '#f8f9fa', py: 2 }}>Status</TableCell>
+              <TableCell sx={{ fontWeight: 700, color: '#455a64', backgroundColor: '#f8f9fa', py: 2 }}>Category</TableCell>
+              <TableCell sx={{ fontWeight: 700, color: '#455a64', backgroundColor: '#f8f9fa', py: 2 }}>Title</TableCell>
+              <TableCell sx={{ fontWeight: 700, color: '#455a64', backgroundColor: '#f8f9fa', py: 2 }}>Details</TableCell>
+              <TableCell sx={{ fontWeight: 700, color: '#455a64', backgroundColor: '#f8f9fa', py: 2 }}>Date</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -137,9 +137,9 @@ const HomePage = () => {
                       onKeyDown={(e) => { if(e.key === 'Enter') handleRowClick(alertItem.id) }}
                       sx={{ 
                         cursor: 'pointer',
-                        backgroundColor: viewed ? 'transparent' : '#f0f8ff',
-                        transition: 'background-color 0.3s',
-                        '&:hover': { backgroundColor: viewed ? '#f5f5f5' : '#e6f2ff' }
+                        backgroundColor: viewed ? '#ffffff' : '#fff5f5',
+                        transition: 'all 0.2s',
+                        '&:hover': { backgroundColor: viewed ? '#f8f9fa' : '#ffebee' }
                       }}
                     >
                       <TableCell>

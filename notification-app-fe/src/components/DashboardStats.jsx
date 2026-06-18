@@ -24,26 +24,27 @@ const DashboardStats = ({ data }) => {
   const StatCard = ({ title, value, color, Icon }) => (
     <Grid item xs={12} sm={6} md={3}>
       <Card 
-        elevation={2} 
+        elevation={0} 
         sx={{ 
-          borderBottom: `4px solid ${color}`, 
-          borderRadius: 2, 
+          borderTop: `4px solid ${color}`, 
+          borderRadius: 3, 
           height: '100%',
-          transition: 'transform 0.2s, box-shadow 0.2s',
+          boxShadow: '0 2px 10px rgba(0,0,0,0.04)',
+          transition: 'transform 0.3s ease, box-shadow 0.3s ease',
           '&:hover': {
-            transform: 'translateY(-4px)',
-            boxShadow: '0 8px 16px rgba(0,0,0,0.1)'
+            transform: 'translateY(-6px)',
+            boxShadow: '0 12px 24px rgba(0,0,0,0.1)'
           }
         }}
       >
-        <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', py: 3 }}>
-          <Box sx={{ backgroundColor: `${color}15`, p: 1.5, borderRadius: '50%', mb: 2 }}>
-            <Icon sx={{ color: color, fontSize: 32 }} />
+        <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', py: 4 }}>
+          <Box sx={{ backgroundColor: `${color}15`, p: 2, borderRadius: '50%', mb: 2, display: 'flex' }}>
+            <Icon sx={{ color: color, fontSize: 36 }} />
           </Box>
-          <Typography variant="overline" color="text.secondary" fontWeight="bold">
+          <Typography variant="overline" color="text.secondary" sx={{ fontWeight: 600, letterSpacing: 1 }}>
             {title}
           </Typography>
-          <Typography variant="h4" sx={{ color: '#2c3e50', fontWeight: 700, mt: 0.5 }}>
+          <Typography variant="h3" sx={{ color: '#2c3e50', fontWeight: 800, mt: 0.5 }}>
             {value}
           </Typography>
         </CardContent>
@@ -52,8 +53,8 @@ const DashboardStats = ({ data }) => {
   );
 
   return (
-    <Box sx={{ mb: 4 }}>
-      <Grid container spacing={3}>
+    <Box sx={{ mb: 5 }}>
+      <Grid container spacing={4}>
         <StatCard title="Total Alerts" value={stats.total} color="#34495e" Icon={NotificationsActiveIcon} />
         <StatCard title="Placements" value={stats.placement} color="#2ecc71" Icon={WorkIcon} />
         <StatCard title="Results" value={stats.result} color="#f39c12" Icon={AssessmentIcon} />

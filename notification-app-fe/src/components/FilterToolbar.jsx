@@ -10,12 +10,12 @@ const FilterToolbar = ({ searchTerm, onSearchChange, categoryFilter, onCategoryC
   };
 
   return (
-    <Box sx={{ mb: 3, p: 2, backgroundColor: '#ffffff', borderRadius: 2, boxShadow: '0 2px 8px rgba(0,0,0,0.05)', border: '1px solid #f0f0f0' }}>
-      <Grid container spacing={2} alignItems="center">
-        <Grid item xs={12} md={7}>
+    <Box sx={{ mb: 5, p: 3, backgroundColor: '#ffffff', borderRadius: 3, boxShadow: '0 4px 16px rgba(0,0,0,0.03)', border: '1px solid #f0f0f0' }}>
+      <Grid container spacing={3} alignItems="center">
+        <Grid item xs={12} md={6}>
           <TextField
             fullWidth
-            size="small"
+            size="medium"
             variant="outlined"
             label="Search Notifications"
             placeholder="Search by title..."
@@ -30,8 +30,8 @@ const FilterToolbar = ({ searchTerm, onSearchChange, categoryFilter, onCategoryC
             }}
           />
         </Grid>
-        <Grid item xs={12} sm={8} md={3}>
-          <FormControl fullWidth size="small">
+        <Grid item xs={12} sm={8} md={4}>
+          <FormControl fullWidth size="medium">
             <InputLabel>Category</InputLabel>
             <Select
               value={categoryFilter}
@@ -53,7 +53,7 @@ const FilterToolbar = ({ searchTerm, onSearchChange, categoryFilter, onCategoryC
               color="secondary" 
               onClick={handleClear}
               startIcon={<ClearIcon />}
-              sx={{ height: 40 }}
+              sx={{ height: 56, borderRadius: 2, fontWeight: 'bold' }}
             >
               Clear
             </Button>
