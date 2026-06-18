@@ -136,17 +136,22 @@ const PriorityPage = () => {
                     <CardContent sx={{ p: 4 }}>
                       <Box display="flex" justifyContent="space-between" alignItems="flex-start" mb={2} flexWrap="wrap" gap={1}>
                         <Box display="flex" alignItems="center" gap={2}>
-                          {!viewed && <Chip label="NEW" size="small" color="error" sx={{ fontWeight: 'bold' }} />}
-                          <Typography variant="h5" component="div" sx={{ fontWeight: viewed ? 500 : 700, color: '#2c3e50' }}>
+                          {viewed ? (
+                            <Chip label="VIEWED" size="small" sx={{ bgcolor: '#f1f5f9', color: '#64748b', fontWeight: 600, fontSize: '0.7rem', letterSpacing: 0.5 }} />
+                          ) : (
+                            <Chip label="NEW" size="small" sx={{ bgcolor: '#e0e7ff', color: '#4338ca', fontWeight: 700, fontSize: '0.7rem', letterSpacing: 0.5 }} />
+                          )}
+                          <Typography variant="h5" component="div" sx={{ fontWeight: viewed ? 500 : 700, color: '#1e293b' }}>
                             {item.title}
                           </Typography>
                         </Box>
-                        <Box display="flex" alignItems="center" sx={{ backgroundColor: '#f8f9fa', px: 2, py: 1, borderRadius: 2 }}>
+                        <Box display="flex" alignItems="center" sx={{ 
+                          bgcolor: item.type === 'Placement' ? '#dcfce7' : item.type === 'Result' ? '#fef3c7' : '#e0f2fe',
+                          color: item.type === 'Placement' ? '#166534' : item.type === 'Result' ? '#92400e' : '#075985',
+                          px: 2, py: 0.5, borderRadius: 2 
+                        }}>
                           {getCategoryIcon(item.type)}
-                          <Typography variant="body2" fontWeight="bold" color={
-                            item.type === 'Placement' ? '#2ecc71' : 
-                            item.type === 'Result' ? '#f39c12' : '#3498db'
-                          }>
+                          <Typography variant="body2" fontWeight="700" sx={{ letterSpacing: 0.5 }}>
                             {item.type || 'General'}
                           </Typography>
                         </Box>
