@@ -53,34 +53,30 @@ const HomePage = () => {
   });
 
   return (
-    <Container maxWidth="xl" sx={{ py: 4, display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-      <Box sx={{ mb: 6, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 2 }}>
-        <Box display="flex" alignItems="center" gap={3}>
-          <Box sx={{ backgroundColor: '#1976d210', p: 1.5, borderRadius: 3, display: 'flex' }}>
-            <NotificationsIcon color="primary" sx={{ fontSize: 44 }} />
-          </Box>
-          <Box>
-            <Typography variant="h3" fontWeight={700} color="#1e293b" sx={{ letterSpacing: '-0.5px' }}>
+    <Container maxWidth="lg" sx={{ py: 3, display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+      <Box sx={{ mb: 3, display: 'flex', alignItems: 'center', gap: 2 }}>
+        <Box sx={{ backgroundColor: '#1976d210', p: 1, borderRadius: 2, display: 'flex' }}>
+          <NotificationsIcon color="primary" sx={{ fontSize: 36 }} />
+        </Box>
+        <Box display="flex" flexDirection="column">
+          <Box display="flex" alignItems="center" gap={2}>
+            <Typography variant="h4" fontWeight={700} color="#1e293b" sx={{ letterSpacing: '-0.5px' }}>
               Alert Dashboard
             </Typography>
-            <Typography variant="subtitle1" color="text.secondary" sx={{ mt: 0.5, fontWeight: 500 }}>
-              Monitor and track all organizational broadcasts in real-time.
-            </Typography>
+            <Chip label={currentDate} size="small" variant="outlined" sx={{ fontWeight: 600, color: 'text.secondary' }} />
           </Box>
-        </Box>
-        <Box sx={{ textAlign: 'right', px: 2, py: 1 }}>
-          <Typography variant="body2" color="text.secondary" fontWeight="600">
-            {currentDate}
+          <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5, fontWeight: 500 }}>
+            Monitor and track all organizational broadcasts in real-time.
           </Typography>
         </Box>
       </Box>
 
       {isLoading ? (
-        <Box sx={{ mb: 6 }}>
-          <Grid container spacing={3}>
+        <Box sx={{ mb: 3 }}>
+          <Grid container spacing={2}>
             {[1, 2, 3, 4].map(i => (
               <Grid item xs={12} sm={6} md={3} key={i}>
-                <Skeleton variant="rounded" height={160} />
+                <Skeleton variant="rounded" height={100} />
               </Grid>
             ))}
           </Grid>

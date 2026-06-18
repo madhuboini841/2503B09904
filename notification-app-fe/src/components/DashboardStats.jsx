@@ -27,24 +27,24 @@ const DashboardStats = ({ data }) => {
         elevation={0} 
         sx={{ 
           borderTop: `4px solid ${color}`, 
-          borderRadius: 3, 
+          borderRadius: 2, 
           height: '100%',
-          boxShadow: '0 2px 10px rgba(0,0,0,0.04)',
-          transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+          boxShadow: '0 2px 6px rgba(0,0,0,0.04)',
+          transition: 'transform 0.2s ease, box-shadow 0.2s ease',
           '&:hover': {
-            transform: 'translateY(-6px)',
-            boxShadow: '0 12px 24px rgba(0,0,0,0.1)'
+            transform: 'translateY(-4px)',
+            boxShadow: '0 8px 16px rgba(0,0,0,0.08)'
           }
         }}
       >
-        <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', py: 4 }}>
-          <Box sx={{ backgroundColor: `${color}15`, p: 2, borderRadius: '50%', mb: 2, display: 'flex' }}>
-            <Icon sx={{ color: color, fontSize: 36 }} />
+        <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', py: 2, px: 2 }}>
+          <Box sx={{ backgroundColor: `${color}15`, p: 1, borderRadius: '50%', mb: 1, display: 'flex' }}>
+            <Icon sx={{ color: color, fontSize: 24 }} />
           </Box>
-          <Typography variant="overline" color="text.secondary" sx={{ fontWeight: 600, letterSpacing: 1 }}>
+          <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600, letterSpacing: 0.5 }}>
             {title}
           </Typography>
-          <Typography variant="h3" sx={{ color: '#2c3e50', fontWeight: 800, mt: 0.5 }}>
+          <Typography variant="h5" sx={{ color: '#2c3e50', fontWeight: 700, mt: 0 }}>
             {value}
           </Typography>
         </CardContent>

@@ -10,8 +10,8 @@ const FilterToolbar = ({ searchTerm, onSearchChange, categoryFilter, onCategoryC
   };
 
   return (
-    <Box sx={{ mb: 5, p: 3, backgroundColor: '#ffffff', borderRadius: 3, boxShadow: '0 4px 16px rgba(0,0,0,0.03)', border: '1px solid #f0f0f0' }}>
-      <Grid container spacing={3} alignItems="center">
+    <Box sx={{ mb: 2, p: 2, backgroundColor: '#ffffff', borderRadius: 2, boxShadow: '0 2px 6px rgba(0,0,0,0.03)', border: '1px solid #e2e8f0' }}>
+      <Grid container spacing={2} alignItems="center">
         <Grid item xs={12} md={6}>
           <TextField
             fullWidth

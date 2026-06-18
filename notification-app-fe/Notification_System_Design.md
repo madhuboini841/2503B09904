@@ -1,27 +1,30 @@
-# Notification System Design: Stage 1
+# Stage 1 Implementation
 
-## Core Mechanics
+## Notification Fetching
+Notifications are retrieved from an external API using Axios within a dedicated `notificationService.js` module. To guarantee smooth development and evaluation, a fallback mock data mechanism is invoked if the primary API is unreachable or times out, ensuring the UI remains populated with realistic sample data under all conditions.
 
-Stage 1 introduces a streamlined sorting pipeline built to highlight urgent alerts without drowning the user in data. The logic is structured around a two-step prioritization filter followed by a strict display limit.
+## Sorting Logic
+The priority sorting engine assigns numeric weights to categories to enforce a strict hierarchy:
+1. `Placement` (Weight: 3)
+2. `Result` (Weight: 2)
+3. `Event` (Weight: 1)
+Within the same category weight, chronological recency acts as the tie-breaker. This multi-pass algorithm guarantees that the most critical and recent alerts always bubble to the top.
 
-### 1. The Priority Hierarchy
-The system assigns immutable significance to incoming messages based on their category:
-* **Apex Priority**: `Placement`
-* **Intermediate Priority**: `Result`
-* **Baseline Priority**: `Event`
+## Assumptions
+- The core API payload conforms to a stable structure containing `id`, `title`, `message`, `type`, and `date` fields.
+- Recency relies on standard ISO-8601 string parsing via JavaScript's native Date object.
+- It is safe to cache read states locally since this is a client-side interface without user authentication.
 
-The algorithm strictly enforces this tier list. A `Placement` notification will always outrank an `Event` notification, regardless of when they were dispatched.
+# Stage 2 Implementation
 
-### 2. Recency Tie-Breaker
-Within any single priority bracket (for instance, a cluster of `Result` alerts), the engine falls back to chronological sorting. By computing the difference between generation timestamps, the most recently issued alert floats to the top of its respective tier.
+## Filtering
+A robust, case-insensitive filter system processes the raw dataset locally using React's `useMemo` hook. The search bar tracks string inclusions in the title, while the category dropdown explicitly checks exact type matches. Both filters operate concurrently to drill down data instantaneously.
 
-### 3. Visibility Cap
-To maintain a high signal-to-noise ratio, the rendering engine aggressively truncates the final dataset. Regardless of total volume, only the **absolute top 10** notifications survive the cut to be displayed on the high-priority dashboard.
+## Viewed Status Tracking
+To provide persistence across sessions, the application utilizes a custom `useViewedStatus` React hook interacting with the browser's `localStorage`. Notification IDs are pushed into an array upon interaction, and the UI reacts immediately by swapping "NEW" chips for "VIEWED" indicators and applying a subtle opacity shift to the element.
 
-### 4. Handling Ingress
-To ensure efficient processing of incoming data streams, new notifications are appended directly to the active state array in memory. The sorting algorithm is then re-executed, and the array is immediately sliced back down to 10 elements. This client-side processing approach eliminates the need for redundant network round-trips when sorting.
+## Error Handling
+Axios operations are wrapped in standard `try...catch` blocks. Specific error strings are surfaced directly to the user interface via Material UI `Alert` banners. Data fetching states are strictly monitored with boolean flags to prevent layout shifts and display `Skeleton` or `CircularProgress` loaders.
 
-## Key Assumptions
-* **Consistent Payload Schemas**: The system assumes every notification payload reliably includes an actionable `date` string (ISO format) and a strict `type` string matching our priority keys. Anomalous types fall to the bottom of the list.
-* **Volume Thresholds**: We assume the total volume of raw alerts fetched simultaneously is small enough that client-side sorting does not freeze the main execution thread.
-* **Read-Only Context**: For Stage 1, we assume all retrieved notifications are meant to be viewed uniformly, meaning individual "read/unread" states are not tracked locally.
+## User Experience Improvements
+The UI replicates a professional enterprise environment. The layout centers on visual hierarchy, utilizing Material UI's grid structures, balanced padding, and soft shadow elevations. Redundant space has been eliminated, while interactive elements respond with subtle, premium hover effects. Data density is prioritized over flashy styling, delivering a streamlined, recruiter-friendly administrative dashboard.
